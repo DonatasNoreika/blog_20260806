@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views import generic
 from .models import Post, Comment
+from django.db.models import Q
 
 class PostListView(generic.ListView):
     model = Post
@@ -14,5 +15,12 @@ class PostDetailView(generic.DetailView):
     template_name = "post.html"
     context_object_name = "post"
 
-
-
+def search(request):
+    query = request.GET.get("query")
+    context = {
+        "query": query,
+        "posts": Post.objects.filter(Q(title__icontains=query) |
+                                     Q(author__username__icontains=query) |
+                                     Q(content__icontains=query))
+    }
+    return render(request, template_name="search.html", context=context)
