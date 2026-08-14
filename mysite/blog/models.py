@@ -6,6 +6,7 @@ class Post(models.Model):
     content = models.TextField()
     date = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(to=User, on_delete=models.CASCADE)
+    cover = models.ImageField(upload_to="covers", null=True, blank=True)
 
     class Meta:
         ordering = ['-pk']
