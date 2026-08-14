@@ -7,6 +7,9 @@ class Post(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(to=User, on_delete=models.CASCADE)
 
+    class Meta:
+        ordering = ['-pk']
+
     def __str__(self):
         return self.title
 
