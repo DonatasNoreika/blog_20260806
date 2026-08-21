@@ -29,5 +29,8 @@ class Comment(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(to='blog.CustomUser', on_delete=models.CASCADE)
 
+    class Meta:
+        ordering = ['-pk']
+
     def __str__(self):
         return self.content

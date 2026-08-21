@@ -24,7 +24,13 @@
     <div class="card bg-light">
         <div class="card-body">
             <!-- Comment form-->
-            <form class="mb-4"><textarea class="form-control" rows="3" placeholder="Join the discussion and leave a comment!"></textarea></form>
+            {% if user.is_authenticated %}
+            <form class="mb-4" method="post">
+                {% csrf_token %}
+                <textarea class="form-control" rows="3" placeholder="Įsitraukite į diskusiją ir palikite komentarą!" name="content"></textarea>
+                <button type="submit" class="btn btn-primary mt-2">Paskelbti</button>
+            </form>
+            {% endif %}
             <!-- Comment -->
             {% for comment in post.comments.all %}
             <div class="d-flex mb-4">
