@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Mano profilis{% endblock %}
+
+{% block content %}
+{% if user.photo %}
+<img src="{{ user.photo.url }}" class="rounded-circle" width="20%">
+{% endif %}
+<h1 class="display-4">{{ user.username }} profilis</h1>
+ <form method="post" class="mb-4" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% load crispy_forms_tags %}
+    {{ form | crispy }}
+    <button type="submit" class="btn btn-primary w-100">Prisijungti</button>
+</form>
+{% endblock %}

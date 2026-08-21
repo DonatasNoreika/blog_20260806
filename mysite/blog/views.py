@@ -72,3 +72,13 @@ class SignUpView(generic.CreateView):
     form_class = CustomUserCreateForm
     template_name = "signup.html"
     success_url = reverse_lazy("login")
+
+
+class UserUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = CustomUser
+    fields = ['first_name', 'last_name', 'email', 'photo']
+    template_name = "profile.html"
+    success_url = reverse_lazy('profile')
+
+    def get_object(self, queryset = ...):
+        return self.request.user
