@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Mano komentarai{% endblock %}
+
+{% block content %}
+<h1 class="display-4">Mano komentarai</h1>
+
+<section class="mb-5">
+    <div class="card bg-light">
+        <div class="card-body">
+            <!-- Comment -->
+            {% for comment in comments %}
+            <div class="d-flex mb-4">
+                <!-- Parent comment-->
+                <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
+                <div class="ms-3">
+                    Įrašas: <a href="{% url 'post' comment.post.pk %}">{{ comment.post.title }}</a>
+                    <div class="fw-bold">{{ comment.author }}, {{ comment.date | date:"Y-m-d H:i" }}</div>
+                    {{ comment.content | safe }}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}
