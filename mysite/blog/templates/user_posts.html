@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %}Mano įrašai{% endblock %}
+
+{% block content %}
+<h1 class="display-4">Mano įrašai</h1>
+
+{% for post in posts %}
+<p><a href="{% url 'post' post.pk %}">{{ post.title }}</a></p>
+{% endfor %}
+{% endblock %}
