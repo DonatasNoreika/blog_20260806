@@ -9,7 +9,12 @@
         <!-- Post title-->
         <h1 class="fw-bolder mb-1">{{ post.title }}</h1>
         <!-- Post meta content-->
-        <div class="text-muted fst-italic mb-2">Paskelbta {{ post.date | date:"Y-m-d H:i" }}, autorius {{ post.author }}</div>
+        <div class="text-muted fst-italic mb-2">
+            {% if post.author.photo %}
+            <img src="{{ post.author.photo.url }}" class="rounded-circle" width="30px">
+            {% endif %}
+            {{ post.author }}, paskelbta {{ post.date | date:"Y-m-d H:i" }}
+        </div>
     </header>
     <!-- Preview image figure-->
     {% if post.cover %}
@@ -35,7 +40,12 @@
             {% for comment in post.comments.all %}
             <div class="d-flex mb-4">
                 <!-- Parent comment-->
+                {% if comment.author.photo %}
+                <div class="flex-shrink-0"><img class="rounded-circle" src="{{ comment.author.photo.url }}" alt="..." width="50px"/></div>
+<!--                <img src="{{ comment.author.photo.url }}" class="rounded-circle" width="30px">-->
+                {% else %}
                 <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
+                {% endif %}
                 <div class="ms-3">
                     <div class="fw-bold">{{ comment.author }}, {{ comment.date | date:"Y-m-d H:i" }}</div>
                     {{ comment.content | safe }}

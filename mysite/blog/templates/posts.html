@@ -11,7 +11,12 @@
         <!-- Post title-->
         <h1 class="fw-bolder mb-1">{{ post.title }}</h1>
         <!-- Post meta content-->
-        <div class="text-muted fst-italic mb-2">Paskelbta {{ post.date | date:"Y-m-d H:i" }}, autorius {{ post.author }}</div>
+        <div class="text-muted fst-italic mb-2">
+            {% if post.author.photo %}
+            <img src="{{ post.author.photo.url }}" class="rounded-circle" width="30px">
+            {% endif %}
+            {{ post.author }}, paskelbta {{ post.date | date:"Y-m-d H:i" }}
+        </div>
     </header>
     <!-- Preview image figure-->
     {% if post.cover %}
