@@ -19,7 +19,7 @@
     {% endif %}
     <!-- Post content-->
     <section class="mb-5">
-        <p class="fs-5 mb-4">{{ post.content | truncatewords:30 }}
+        <p class="fs-5 mb-4">{{ post.content | safe | truncatewords:30 }}
             <br>
             <a href="{% url 'post' post.pk %}">
                 Skaityti daugiau

@@ -1,9 +1,10 @@
 from django.contrib.auth.models import User
 from django.db import models
+from tinymce.models import HTMLField
 
 class Post(models.Model):
     title = models.CharField()
-    content = models.TextField()
+    content = HTMLField()
     date = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(to=User, on_delete=models.CASCADE)
     cover = models.ImageField(upload_to="covers", null=True, blank=True)
